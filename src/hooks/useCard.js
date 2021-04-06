@@ -6,11 +6,26 @@ export function useCard(initialCard) {
   let handleChange = (e) => {
     // deconstruct wanted properties from e.target
     let { name, value, type } = e.target;
-
-    if (type === 'number') {
-      // change value from string to number
-      value = Number(value);
+    if (name === 'cardNumber') {
+      value = value
+        .replace(/[^\dA-Z]/g, '')
+        .slice(0, 16)
+        .replace(/(.{4})/g, '$1 ')
+        .trim();
     }
+
+    if (name === 'validThrough') {
+      value = value
+        .replace(/^(\d\d)(\d)$/g, '$1/$2')
+        .replace(/^(\d\d\/\d\d)(\d+)$/g, '$1/$2')
+        .replace(/[^\d\/]/g, '')
+        .slice(0, 5);
+    }
+
+    if (name === 'cvc') {
+      value = value.slice(0, 3);
+    }
+
     const nextCardState = {
       // send in all the properties
       ...card,
@@ -31,10 +46,10 @@ export function useCard(initialCard) {
 export const vendors = ['Bitcoin', 'MasterCard', 'Visa', 'Other'];
 
 export const initialCard = {
-  cardNumber: undefined,
+  cardNumber: '',
   cardFirstName: '',
   cardLastName: '',
-  validThrough: undefined,
-  cvc: undefined,
+  validThrough: '',
+  cvc: '',
   vendor: vendors[0],
 };

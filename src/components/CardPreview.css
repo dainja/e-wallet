@@ -1,0 +1,50 @@
+.card-preview {
+  background-color: lightblue;
+  max-width: 80%;
+  margin: 0 auto;
+  position: relative;
+  height: 200px;
+}
+.card-vendor {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: red;
+}
+.card-vendor img {
+  width: 100%;
+  height: 100%;
+}
+.card-number {
+  height: 30px;
+  background-color: red;
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.card-full-name {
+  position: absolute;
+  top: 140px;
+  width: 100%;
+  height: 30px;
+  background-color: red;
+}
+.card-valid-through {
+  position: absolute;
+  top: 140px;
+  right: 10px;
+  text-align: right;
+  height: 30px;
+  width: 72px;
+  background-color: red;
+}
+
+.card-cvc {
+  height: 30px;
+  width: 50px;
+  background-color: red;
+}
