@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { AddCardForm } from './components/AddCardForm';
+import { initialCard, useCard, vendors } from './hooks/useCard';
 
 function App() {
+  const { card, handleChange, resetCard } = useCard(initialCard);
+
+  let [cards, setCards] = useState([]);
+
+  let save = (e) => {
+    // grab existing cards and add new card last
+    const nextCardsState = [...cards, card];
+    console.log('nextCardsState', nextCardsState);
+    setCards(nextCardsState);
+    // Reset form
+    // setCard(initialCard);
+    resetCard();
+    e.preventDefault();
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <AddCardForm
+        card={card}
+        handleChange={handleChange}
+        save={save}
+        vendors={vendors}
+      />
     </div>
   );
 }
