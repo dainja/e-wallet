@@ -1,50 +1,95 @@
 .card-preview {
-  background-color: lightblue;
-  max-width: 80%;
-  margin: 0 auto;
   position: relative;
+
+  max-width: 300px;
   height: 200px;
+  margin: 0 auto;
+
+  color: #fff;
+
+  background-color: lightblue;
+  border-radius: 20px;
 }
 .card-vendor {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  height: 50px;
-  width: 50px;
-  background-color: red;
+  top: 20px;
+  right: 20px;
+
+  width: 70px;
+  height: 45px;
 }
 .card-vendor img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 .card-number {
-  height: 30px;
-  background-color: red;
   position: absolute;
-  top: 100px;
+  top: 95px;
+
   width: 100%;
+  height: 30px;
   margin: 0 auto;
+
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
   text-align: center;
 }
 .card-full-name {
   position: absolute;
   top: 140px;
+  left: 30px;
+
   width: 100%;
   height: 30px;
-  background-color: red;
+
+  font-size: 0.6rem;
+  line-height: 1rem;
+  text-transform: uppercase;
 }
 .card-valid-through {
   position: absolute;
   top: 140px;
-  right: 10px;
-  text-align: right;
-  height: 30px;
+  right: 30px;
+
   width: 72px;
-  background-color: red;
+  height: 30px;
+
+  font-size: 0.6rem;
+  line-height: 1rem;
+  text-align: right;
+  text-transform: uppercase;
 }
 
 .card-cvc {
-  height: 30px;
   width: 50px;
+  height: 30px;
+
   background-color: red;
+}
+
+.card-chip {
+  position: absolute;
+  top: 60px;
+  left: 30px;
+
+  width: 40px;
+  height: 30px;
+  padding: 0;
+
+  background-image: url(../assets/img/chip.svg);
+  background-repeat: no-repeat;
+}
+
+.card-signals {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}
+.card-signals img {
+  width: 35px;
+  height: 35px;
+
+  filter: invert();
 }

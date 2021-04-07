@@ -43,7 +43,7 @@ export function useCard(initialCard) {
   return { card, handleChange, resetCard };
 }
 
-export const vendors = ['Bitcoin', 'MasterCard', 'Visa', 'Other'];
+export const vendors = ['Bitcoin', 'MasterCard', 'Visa', 'Klarna', 'Amex'];
 
 export const initialCard = {
   cardNumber: '',

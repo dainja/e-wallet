@@ -58,16 +58,22 @@ function App() {
         <Switch>
           <Route path='/home'>
             {cards.length > 0 && (
-              <>
+              <div className='cards-home'>
                 <div className='active-card'>
                   <CardPreview card={cards[0]} />
                 </div>
-                {cards.slice(1, 3).map((_card, index) => {
-                  return <CardPreview card={_card} key={index} />;
-                })}
-              </>
+                <div className='non-active-cards'>
+                  <div className='cards-wrapper'>
+                    {cards.slice(1, 5).map((_card, index) => {
+                      return <CardPreview card={_card} key={index} />;
+                    })}
+                  </div>
+                </div>
+              </div>
             )}
-            <Link to='/addcard'>Add card</Link>
+            <Link className='btn-add-card btn btn-dark' to='/addcard'>
+              Add card
+            </Link>
           </Route>
           <Route path='/addcard'>
             <AddCardForm

@@ -1,0 +1,48 @@
+.cards-home {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 80vh;
+  margin-top: 2rem;
+}
+
+.non-active-cards {
+}
+
+.cards-wrapper {
+  display: flex;
+  overflow: scroll;
+}
+
+.cards-wrapper .card-preview {
+  flex: 0 0 300px;
+  height: 200px;
+  margin: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.cards-wrapper .card-preview:first-child {
+  margin-left: 1rem;
+}
+
+.btn-add-card {
+  display: block;
+  margin: 0 auto;
+  margin: 0 2rem;
+}
+
+.MasterCard {
+  background-image: linear-gradient(to right, #f68c29, #fba52d);
+}
+.Visa {
+  background-image: linear-gradient(to right, #1266ad, #1082be);
+}
+.Amex {
+  background-image: linear-gradient(to right, #1266ad, #1082be);
+}
+.Klarna {
+  background-image: linear-gradient(to right, #feb3c7, #ffc4d5);
+}
+.Bitcoin {
+  background-image: linear-gradient(to right, #363636, #a8a8a8);
+}
