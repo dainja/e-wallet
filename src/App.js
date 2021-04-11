@@ -7,25 +7,32 @@ import { useAccount } from './hooks/useAccount';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { IsLogged } from './components/IsLogged';
 import { CardPreview } from './components/CardPreview';
-import { useSelector } from 'react-redux';
+import Home from './components/Home';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCard } from './actions';
 
 function App() {
   const { card, handleChange, resetCard } = useCard(initialCard);
 
-  let [cards, setCards] = useState([]);
+  const dispatch = useDispatch();
+  // @ts-ignore
+  const cards = useSelector((state) => state.cards);
+  console.log('redux', cards);
+  // let [cards, setCards] = useState([]);
   let [isLogged, setIsLogged] = useState(false);
 
   // we keep this here
   let save = (e) => {
-    // grab existing cards and add new card last
-    const nextCardsState = [...cards, card];
-    console.log('nextCardsState', nextCardsState);
-    setCards(nextCardsState);
+    console.log('save', addCard(card), card);
+    dispatch(addCard(card));
 
     // Reset form
     resetCard();
     e.preventDefault();
   };
+
+  // dispatch(removeCard(cardId))
+  // dispatch(setActive(cardId))
 
   const { firstName, lastName } = useAccount();
 
@@ -57,20 +64,7 @@ function App() {
       <div className='App'>
         <Switch>
           <Route path='/home'>
-            {cards.length > 0 && (
-              <div className='cards-home'>
-                <div className='active-card'>
-                  <CardPreview card={cards[0]} />
-                </div>
-                <div className='non-active-cards'>
-                  <div className='cards-wrapper'>
-                    {cards.slice(1, 5).map((_card, index) => {
-                      return <CardPreview card={_card} key={index} />;
-                    })}
-                  </div>
-                </div>
-              </div>
-            )}
+            <Home cards={cards} />
             <Link className='btn-add-card btn btn-dark' to='/addcard'>
               Add card
             </Link>

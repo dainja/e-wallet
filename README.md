@@ -1,4 +1,6 @@
 #Todo
 
-byt bild = card.vendor (cardpreview.js)
 redux
+isActive
+
+home -> fix active (swap index in array?)

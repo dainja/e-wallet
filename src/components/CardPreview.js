@@ -7,35 +7,52 @@ import amex from '../assets/img/amex.svg';
 import signals from '../assets/img/signals.png';
 
 export function CardPreview({ card }) {
-  const whichVendor = () => {
-    if (card.vendor === 'Bitcoin') {
-      console.log(card.vendor);
-      return <img src={bitcoin} alt='' />;
-    }
-    if (card.vendor === 'MasterCard') {
-      return <img src={mastercard} alt='' />;
-    }
-    if (card.vendor === 'Visa') {
-      return <img src={visa} alt='' />;
-    }
-    if (card.vendor === 'Klarna') {
-      return <img src={klarna} alt='' />;
-    }
-    if (card.vendor === 'Amex') {
-      return <img src={amex} alt='' />;
-    }
-  };
+  // const whichVendor = () => {
+  //   if (card.vendor === 'Bitcoin') {
+  //     console.log(card.vendor);
+  //     return <img src={bitcoin} alt='' />;
+  //   }
+  //   if (card.vendor === 'MasterCard') {
+  //     return <img src={mastercard} alt='' />;
+  //   }
+  //   if (card.vendor === 'Visa') {
+  //     return <img src={visa} alt='' />;
+  //   }
+  //   if (card.vendor === 'Klarna') {
+  //     return <img src={klarna} alt='' />;
+  //   }
+  //   if (card.vendor === 'Amex') {
+  //     return <img src={amex} alt='' />;
+  //   }
+  // };
 
   return (
     <div className={`card-preview ${card.vendor}`}>
-      <p className='card-vendor'>{whichVendor()}</p>
+      <p className='card-vendor'>
+        <img
+          src={
+            card.vendor === 'Bitcoin'
+              ? bitcoin
+              : card.vendor === 'MasterCard'
+              ? mastercard
+              : card.vendor === 'Visa'
+              ? visa
+              : card.vendor === 'Klarna'
+              ? klarna
+              : card.vendor === 'Amex'
+              ? amex
+              : null
+          }
+          alt=''
+        />
+      </p>
       <p className='card-chip'></p>
       <p className='card-signals'>
         <img src={signals} alt='' />
       </p>
 
       <p className='card-number'>{card.cardNumber}</p>
-      <div className=''>
+      <div>
         <p className='card-full-name'>
           Cardholder name
           <br />

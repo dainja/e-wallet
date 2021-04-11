@@ -15,10 +15,10 @@
 }
 
 .cards-wrapper .card-preview {
-  flex: 0 0 300px;
+  /* flex: 0 0 300px;
   height: 200px;
   margin: 0 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2rem; */
 }
 
 .cards-wrapper .card-preview:first-child {
@@ -26,7 +26,7 @@
 }
 
 .btn-add-card {
-  display: block;
+  display: block !important;
   margin: 0 auto;
   margin: 0 2rem;
 }
@@ -45,4 +45,11 @@
 }
 .Bitcoin {
   background-image: linear-gradient(to right, #363636, #a8a8a8);
+}
+
+.card-item {
+  flex: 0 0 300px;
+  height: 200px;
+  margin: 0 1rem;
+  margin-bottom: 2rem;
 }
