@@ -7,6 +7,7 @@ export function IsLogged({ firstName, lastName, handleLogin }) {
       <h5>Login</h5>
       <input type='text' defaultValue={firstName} />
       <input type='text' defaultValue={lastName} />
+      <br />
       <Link
         to='/home'
         className='login-btn btn btn-primary'
