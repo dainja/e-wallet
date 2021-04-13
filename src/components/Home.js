@@ -1,28 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { removeCard, setActive } from '../actions';
 import { CardPreview } from './CardPreview';
 
 export default function Home({ cards }) {
-  const [isActive, setIsActive] = useState(false);
+  const dispatch = useDispatch();
 
-  const setActive = (e) => {
-    console.log(e.target);
-    console.log(cards);
-  };
   return (
     <div>
+      <div>
+        <h5 className='active-card-title'>Active Card</h5>
+      </div>
       {cards.length > 0 && (
         <div className='cards-home'>
-          <div className='active-card'>
-            <CardPreview card={cards[0]} />
-          </div>
+          {cards.map((card, i) => {
+            if (card.active) {
+              return (
+                <div className='active-card'>
+                  <CardPreview key={i} card={card} />
+                </div>
+              );
+            }
+          })}
+
           <div className='non-active-cards'>
             <div className='cards-wrapper'>
-              {cards.slice(1, 5).map((_card, i) => {
-                return (
-                  <div className='card-item' onClick={setActive}>
-                    <CardPreview card={_card} key={i} />
-                  </div>
-                );
+              {cards.map((card, i) => {
+                if (!card.active) {
+                  return (
+                    <div className='card-item'>
+                      <CardPreview card={card} key={i} />
+                      <div className='card-buttons'>
+                        <button
+                          className='btn btn-success'
+                          onClick={() => dispatch(setActive(card))}>
+                          Set Active Card
+                        </button>
+                        <button
+                          className='btn btn-danger'
+                          onClick={() => dispatch(removeCard(card))}>
+                          Remove Card
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }
               })}
             </div>
           </div>

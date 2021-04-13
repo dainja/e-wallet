@@ -6,8 +6,8 @@ const generateId = function () {
 
 const initialCardState = [
   {
-    id: '1',
-    cardNumber: '1234456712345678',
+    id: generateId(),
+    cardNumber: '1234 4567 1234 5678',
     cardFirstName: 'Daniel',
     cardLastName: 'Naja',
     validThrough: '12/22',
@@ -15,34 +15,29 @@ const initialCardState = [
     vendor: vendors[0],
     active: true,
   },
-  {
-    id: '2',
-    cardNumber: '1234456712345678',
-    cardFirstName: 'Daniel',
-    cardLastName: 'Naja',
-    validThrough: '12/22',
-    cvc: '123',
-    vendor: vendors[0],
-    active: false,
-  },
 ];
 
 const cards = (state = initialCardState, action) => {
   switch (action.type) {
     case 'ADD_CARD':
-      console.log('action.payload', action);
       action.payload.id = generateId();
       action.payload.active = false;
       return [...state, action.payload];
 
+    case 'SET_CARDS':
+      return action.payload;
+
     case 'REMOVE_CARD':
-      return state.filter((card) => card.id !== action.payload);
+      return state.filter((card) => card !== action.payload);
 
     case 'SET_ACTIVE':
+      const cardId = action.payload.id;
       return state.map((card) => ({
         ...card,
-        active: action.payload === card.id,
+        // Set active to true if current card id matches payload
+        active: card.id === cardId,
       }));
+
     default:
       return state;
   }

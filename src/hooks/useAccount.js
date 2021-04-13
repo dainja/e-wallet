@@ -7,12 +7,13 @@ export function useAccount() {
   useEffect(() => {
     const lsFirstName = localStorage.getItem('firstName');
     const lsLastName = localStorage.getItem('lastName');
+
     if (!lsFirstName) {
       // Get from API
       fetch('https://randomuser.me/api/')
         .then((res) => res.json())
         .then((res) => {
-          // another One of these deconstructs - DJ KHALED
+          // deconstruct
           const { first, last } = res.results[0].name;
           setFirstName(first);
           setLastName(last);

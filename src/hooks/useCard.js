@@ -1,11 +1,24 @@
 import { useState } from 'react';
 
-export function useCard(initialCard) {
+export const vendors = ['Bitcoin', 'MasterCard', 'Visa', 'Klarna', 'Amex'];
+
+export const initialCard = {
+  cardNumber: '',
+  cardFirstName: '',
+  cardLastName: '',
+  validThrough: '',
+  cvc: '',
+  vendor: vendors[0],
+};
+
+export function useCard(initialCard, firstName, lastName) {
+  initialCard.cardFirstName = firstName;
+  initialCard.cardLastName = lastName;
   let [card, setCard] = useState(initialCard);
 
   let handleChange = (e) => {
     // deconstruct wanted properties from e.target
-    let { name, value, type } = e.target;
+    let { name, value } = e.target;
     if (name === 'cardNumber') {
       value = value
         .replace(/[^\dA-Z]/g, '')
@@ -42,14 +55,3 @@ export function useCard(initialCard) {
 
   return { card, handleChange, resetCard };
 }
-
-export const vendors = ['Bitcoin', 'MasterCard', 'Visa', 'Klarna', 'Amex'];
-
-export const initialCard = {
-  cardNumber: '',
-  cardFirstName: '',
-  cardLastName: '',
-  validThrough: '',
-  cvc: '',
-  vendor: vendors[0],
-};

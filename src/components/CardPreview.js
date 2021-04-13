@@ -7,25 +7,6 @@ import amex from '../assets/img/amex.svg';
 import signals from '../assets/img/signals.png';
 
 export function CardPreview({ card }) {
-  // const whichVendor = () => {
-  //   if (card.vendor === 'Bitcoin') {
-  //     console.log(card.vendor);
-  //     return <img src={bitcoin} alt='' />;
-  //   }
-  //   if (card.vendor === 'MasterCard') {
-  //     return <img src={mastercard} alt='' />;
-  //   }
-  //   if (card.vendor === 'Visa') {
-  //     return <img src={visa} alt='' />;
-  //   }
-  //   if (card.vendor === 'Klarna') {
-  //     return <img src={klarna} alt='' />;
-  //   }
-  //   if (card.vendor === 'Amex') {
-  //     return <img src={amex} alt='' />;
-  //   }
-  // };
-
   return (
     <div className={`card-preview ${card.vendor}`}>
       <p className='card-vendor'>
@@ -65,7 +46,7 @@ export function CardPreview({ card }) {
         </p>
       </div>
 
-      <p className='card-cvc'>{card.cvc}</p>
+      <p className='card-cvc'>CVC: {card.cvc}</p>
     </div>
   );
 }

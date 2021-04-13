@@ -1,42 +1,62 @@
-import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { addCard, setCards } from './actions';
 import { AddCardForm } from './components/AddCardForm';
-import { initialCard, useCard, vendors } from './hooks/useCard';
-import { useAccount } from './hooks/useAccount';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { initialCard, useCard, vendors } from './hooks/useCard';
 import { IsLogged } from './components/IsLogged';
-import { CardPreview } from './components/CardPreview';
-import Home from './components/Home';
+import { useAccount } from './hooks/useAccount';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCard } from './actions';
+import Home from './components/Home';
+import React, { useState } from 'react';
 
 function App() {
-  const { card, handleChange, resetCard } = useCard(initialCard);
-
-  const dispatch = useDispatch();
+  // login handler localstorage
+  const { firstName, lastName } = useAccount();
+  //destruct from useCard hook
+  const { card, handleChange, resetCard } = useCard(
+    initialCard,
+    firstName,
+    lastName,
+  );
   // @ts-ignore
   const cards = useSelector((state) => state.cards);
-  console.log('redux', cards);
-  // let [cards, setCards] = useState([]);
+
   let [isLogged, setIsLogged] = useState(false);
 
-  // we keep this here
+  const dispatch = useDispatch();
+  console.log('redux', cards);
+
+  React.useEffect(() => {
+    // Save cards to localStorage
+    if (isLogged) {
+      localStorage.setItem(firstName + lastName, JSON.stringify(cards));
+    }
+  }, [cards, isLogged]);
+
+  // submit form handler
   let save = (e) => {
     console.log('save', addCard(card), card);
-    dispatch(addCard(card));
+    //don't add more than 4 cards
+    if (cards.length <= 3) {
+      dispatch(addCard(card));
+    } else {
+      alert('no more');
+    }
 
+    // localStorage.setItem(firstName + lastName, JSON.stringify(card));
     // Reset form
     resetCard();
     e.preventDefault();
   };
-
-  // dispatch(removeCard(cardId))
-  // dispatch(setActive(cardId))
-
-  const { firstName, lastName } = useAccount();
-
   const handleLogin = () => {
+    if (localStorage.getItem(firstName + lastName)) {
+      const retrievedAccount = localStorage.getItem(firstName + lastName);
+      const parsedCard = JSON.parse(retrievedAccount);
+
+      dispatch(setCards(parsedCard));
+    }
+
     if (localStorage.getItem('firstName') && localStorage.getItem('lastName')) {
       console.log(
         localStorage.getItem('firstName'),
@@ -44,14 +64,13 @@ function App() {
       );
     }
     setIsLogged(true);
-    console.log(isLogged);
   };
 
   if (!isLogged) {
+    //if isLogged = false, load login-page and insert name from API
     return (
       <Router>
         <IsLogged
-          isLogged={isLogged}
           firstName={firstName}
           lastName={lastName}
           handleLogin={handleLogin}></IsLogged>
@@ -59,6 +78,7 @@ function App() {
     );
   }
 
+  // if isLogged = true, go to Home page
   return (
     <Router>
       <div className='App'>
@@ -76,7 +96,11 @@ function App() {
               save={save}
               vendors={vendors}
             />
-            <Link to='/home'>Home</Link>
+            <div className='home-container'>
+              <Link to='/home' className='btn btn-primary home-btn'>
+                Home
+              </Link>
+            </div>
           </Route>
         </Switch>
       </div>

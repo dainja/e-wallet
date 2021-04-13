@@ -1,9 +1,14 @@
+.App {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .cards-home {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  height: 80vh;
-  margin-top: 2rem;
+  height: 85vh;
+  margin-top: 1rem;
 }
 
 .non-active-cards {
@@ -11,7 +16,14 @@
 
 .cards-wrapper {
   display: flex;
+  height: 280px;
   overflow: scroll;
+}
+
+@media (min-width: 768px) {
+  .cards-wrapper {
+    overflow: hidden;
+  }
 }
 
 .cards-wrapper .card-preview {
@@ -22,7 +34,6 @@
 }
 
 .cards-wrapper .card-preview:first-child {
-  margin-left: 1rem;
 }
 
 .btn-add-card {
@@ -52,4 +63,77 @@
   height: 200px;
   margin: 0 1rem;
   margin-bottom: 2rem;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 0;
+}
+.card-buttons button:first-child {
+  width: 100%;
+  margin-right: 0.25rem;
+}
+.card-buttons button:last-child {
+  width: 100%;
+  margin-left: 0.25rem;
+}
+
+.active-card-title {
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+  text-align: center;
+}
+
+.login-page {
+  text-align: center;
+}
+
+.login-btn {
+  width: 80%;
+  margin-top: 1rem;
+}
+
+.add-card-container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.add-card-container h4 {
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+  text-align: center;
+}
+.add-card-container form {
+  margin-top: 2rem;
+
+  text-align: center;
+}
+.add-card-container label {
+  margin: 0;
+
+  font-weight: bold;
+}
+
+.add-card-container button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.home-btn {
+  width: 100%;
+}
+
+.home-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-name-container .form-group {
+  width: 100%;
+}
+.form-valid-cvc .form-group {
+  width: 100%;
 }
