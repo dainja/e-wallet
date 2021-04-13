@@ -9,7 +9,11 @@ export default function Home({ cards }) {
   return (
     <div>
       <div>
-        <h5 className='active-card-title'>Active Card</h5>
+        {cards.length > 0 ? (
+          <h5 className='active-card-title'>Active Card</h5>
+        ) : (
+          ''
+        )}
       </div>
       {cards.length > 0 && (
         <div className='cards-home'>

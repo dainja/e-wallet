@@ -8,7 +8,7 @@ import { IsLogged } from './components/IsLogged';
 import { useAccount } from './hooks/useAccount';
 import { useDispatch, useSelector } from 'react-redux';
 import Home from './components/Home';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
   // login handler localstorage
@@ -25,9 +25,8 @@ function App() {
   let [isLogged, setIsLogged] = useState(false);
 
   const dispatch = useDispatch();
-  console.log('redux', cards);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Save cards to localStorage
     if (isLogged) {
       localStorage.setItem(firstName + lastName, JSON.stringify(cards));
@@ -57,12 +56,6 @@ function App() {
       dispatch(setCards(parsedCard));
     }
 
-    if (localStorage.getItem('firstName') && localStorage.getItem('lastName')) {
-      console.log(
-        localStorage.getItem('firstName'),
-        localStorage.getItem('lastName'),
-      );
-    }
     setIsLogged(true);
   };
 

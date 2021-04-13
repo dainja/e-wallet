@@ -9,6 +9,7 @@ export const initialCard = {
   validThrough: '',
   cvc: '',
   vendor: vendors[0],
+  active: false,
 };
 
 export function useCard(initialCard, firstName, lastName) {
