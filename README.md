@@ -1,6 +1,4 @@
-#Todo
+## e-Wallet react
 
-redux
-isActive
-
-home -> fix active (swap index in array?)
+- Best viewed in mobile mode
+- [DEMO](https://e-wallet-react.web.app)
